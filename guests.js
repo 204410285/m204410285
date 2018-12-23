@@ -23,7 +23,7 @@ module.exports = class Guests {
   }
 
   static findById(id) {
-    return db.execute('SELECT * FROM post where id = ?', [id]);
+    return db.execute('SELECT * FROM guests where id = ?', [id]);
   }
 
   // UPDATE
