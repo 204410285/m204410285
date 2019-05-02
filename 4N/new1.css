@@ -1,0 +1,118 @@
+html {
+    font-size: 15px;
+    background-color: #a9a9a9;
+  }
+  
+  body {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  
+  h1, h2, h3 {
+    font-family: 'DFKai-SB';
+    color: #2a2a2a;
+  }
+  
+  p, li {
+    font-family: 'DFKai-SB';
+    color: #2a2a2a;
+  }
+  
+  h1 {
+    font-size: 5rem;
+    text-align: center;
+    color: white;
+    text-shadow: 0px 0px 5px cornflowerblue;
+  }
+  
+  h2 {
+    font-size: 3rem;
+    text-align: center;
+  }
+  
+  h3 {
+    font-size: 2.2rem;
+  }
+  
+  p, li {
+    font-size: 1.6rem;
+    line-height: 1.5;
+  }
+  dl, dt, dd {
+    font-size: 1.6rem;
+    line-height: 1.5;
+  }
+  
+  
+  nav, article ,aside,footer {
+    background-color: white;
+    padding: 10px;
+  }
+  
+  nav {
+    height: 50px;
+    background-color: #06f006;
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  nav ul {
+    flex: 2;
+    display: flex;
+  }
+  
+  nav li {
+    display: inline;
+    text-align: center;
+    flex: 1;
+  }
+
+  nav a {
+    display: inline-block;
+    font-size: 2rem;
+    text-decoration: none;
+    color: black;
+    
+  }
+  
+  
+  nav a:hover {
+    color: white;
+    font-size:200%;
+    text-shadow: 0 0 10px wheat;
+    
+  }
+
+  
+  section {
+   display: flex;
+  }
+  
+  article {
+    flex: 4;
+  }
+  
+  aside {
+    flex: 1;
+    margin-left: 10px;
+    background-color: #83fa33;
+  }
+  
+  
+  footer {
+    margin-top: 10px;
+  }
+
+  @media screen and (min-width:500px){ 
+    .box{
+      width: 500px;
+      background-color: green;
+    }
+   }
+   @media screen and (min-width:1000px){ 
+    .box{
+      width: 1000px;
+      background-color: blue;
+    }
+   }
