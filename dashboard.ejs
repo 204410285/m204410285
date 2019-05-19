@@ -18,16 +18,9 @@
     function addPost() {
             document.getElementById("addPost").submit();
     }
-
-    
-    function editBox(id){
-            window.location.href = "/box/edit?id=" + id;
-    }
     function addBox() {
             document.getElementById("addBox").submit();
     }
-     
-    
   </script>
 </head>
 
@@ -41,10 +34,13 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav">
           <li class="nav-item px-2">
-            <a href="/" class="nav-link active">Dashboard</a>
+            <a href="/dashboard" class="nav-link active">KTV線上選單</a>
           </li>
           <li class="nav-item px-2">
-            <a href="/post" class="nav-link">Posts</a>
+            <a href="/post" class="nav-link">Guests</a>
+          </li>
+          <li class="nav-item px-2">
+            <a href="/box" class="nav-link">Box</a>
           </li>
           <li class="nav-item px-2">
             <a href="/box" class="nav-link">Boxes</a>
@@ -52,9 +48,7 @@
           <li class="nav-item px-2">
             <a href="/menu" class="nav-link">Menus</a>
           </li>
-          <li class="nav-item px-2">
-            <a href="/user" class="nav-link">Users</a>
-          </li>
+         
         </ul>
 
         <ul class="navbar-nav ml-auto">
@@ -87,7 +81,7 @@
       <div class="row">
         <div class="col-md-6">
           <h1>
-            <i class="fas fa-cog"></i> Dashboard</h1>
+            <i class="fas fa-cog"></i> KTV線上選單</h1>
         </div>
       </div>
     </div>
@@ -99,17 +93,17 @@
       <div class="row">
         <div class="col-md-3">
           <a href="/post/add" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addPostModal">
-            <i class="fas fa-plus"></i> Add Post
+            <i class="fas fa-plus"></i> Add Guest
           </a>
         </div>
         <div class="col-md-3">
           <a href="/box/add" class="btn btn-success btn-block" data-toggle="modal" data-target="#addBoxModal">
-            <i class="fas fa-plus"></i> Add Box
+            <i class="fas fa-plus"></i> Add Boxes
           </a>
         </div>
         <div class="col-md-3">
           <a href="/menu/add" class="btn btn-warning btn-block" data-toggle="modal" data-target="#addMenuModal">
-            <i class="fas fa-plus"></i> Add Menu
+            <i class="fas fa-plus"></i> Add Menus
           </a>
         </div>
       </div>
@@ -123,7 +117,7 @@
         <div class="col-md-9">
           <div class="card">
             <div class="card-header">
-              <h4>Latest Posts</h4>
+              <h4>Latest Guests</h4>
             </div>
             <table class="table table-striped">
               <thead class="thead-dark">
@@ -132,6 +126,8 @@
                   <th>Name</th>
                   <th>Phone</th>
                   <th>Date</th>
+                  <th>Menuid</th>
+                  <th>Boxid</th>
                   <th></th>
                 </tr>
               </thead>
@@ -151,6 +147,12 @@
                     <%= data[i].date %>
                   </td>
                   <td>
+                    <%= data[i].menuid %>
+                  </td>
+                  <td>
+                    <%= data[i].boxid %>
+                  </td>
+                  <td>
                     <button value="Details" class="btn btn-secondary" onclick="editPost('<%= data[i].id %>')">
                       <i class="fas fa-angle-double-right"></i> Details
                     </button>
@@ -164,9 +166,9 @@
         <div class="col-md-3">
           <div class="card text-center bg-primary text-white mb-3">
             <div class="card-body">
-              <h3>Posts</h3>
+              <h3>Guests</h3>
               <h4 class="display-4">
-                <i class="fas fa-pencil-alt"></i>
+                <i class="fas fa-users"></i>
                 <%= postCount %>
               </h4>
               <a href="/post" class="btn btn-outline-light btn-sm">View</a>
@@ -175,7 +177,7 @@
 
           <div class="card text-center bg-success text-white mb-3">
             <div class="card-body">
-              <h3>Boxs</h3>
+              <h3>Boxes</h3>
               <h4 class="display-4">
                 <i class="fas fa-folder"></i>
                 <%= boxCount %>
@@ -188,7 +190,7 @@
             <div class="card-body">
               <h3>Menus</h3>
               <h4 class="display-4">
-                <i class="fas fa-users"></i>
+                <i class="fas fa-pencil-alt"></i>
                 <%= menuCount %>
               </h4>
               <a href="/menu" class="btn btn-outline-light btn-sm">View</a>
@@ -226,7 +228,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header bg-primary text-white">
-          <h5 class="modal-title">Add Post</h5>
+          <h5 class="modal-title">Add Guests</h5>
           <button class="close" data-dismiss="modal">
             <span>&times;</span>
           </button>
@@ -247,6 +249,31 @@
             </div>
 
             
+
+            <div class="form-group">
+              <label for="boxid">Boxid</label>
+              <select class="form-control" name="boxes">
+                <% 
+                  for ( var i = 0 ; i < boxes.length ; i++){ 
+                    var selected = ( i==0 ) ? "selected" : "";
+                %>
+                <option value="<%= boxes[i].id %>" <%=selected %>>
+                  <%= boxes[i].id %>
+                </option>
+                <% } %>
+              </select>
+            </div>
+           <div class="form-group">
+              <label for="menuid">Menuid</label>
+              <input type="menuid" name="menuid" class="form-control" value="" placeholder="Menuid">
+            </div> 
+            <!--
+            <div class="form-group">
+              <label for="boxid">Boxid</label>
+              <input type="boxid" name="boxid" class="form-control" value="" placeholder="Boxid">
+            </div>-->
+
+
           </form>
         </div>
         <div class="modal-footer">
@@ -272,14 +299,25 @@
               <label for="people">People</label>
               <input type="text" name="people" class="form-control" value="" placeholder="People">
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="size">Size</label>
               <input type="size" name="size" class="form-control" value="" placeholder="Size">
-            </div>
+            </div> -->
+
             <div class="form-group">
-              <label for="boxdate">Date</label>
-              <input name="date" type="date" id="boxdate" class="form-control" value="<%= new Date() %>">
+              <label for="size">Size</label>
+              <select class="form-control" name="boxes">
+                <% 
+                  for ( var i = 0 ; i < boxes.length ; i++){ 
+                    var selected = ( i==0 ) ? "selected" : "";
+                %>
+                <option value="<%= boxes[i].size %>" <%=selected %>>
+                  <%= boxes[i].size %>
+                </option>
+                <% } %>
+              </select>
             </div>
+
           </form>
         </div>
         <div class="modal-footer">
@@ -306,8 +344,8 @@
               <input type="text" class="form-control">
             </div>
             <div class="form-group">
-              <label for="price">Price</label>
-              <input type="price" class="form-control">
+              <label for="drink">Drink</label>
+              <input type="drink" class="form-control">
             </div>
           </form>
         </div>
@@ -330,9 +368,8 @@
   <script>
     // Get the current year for the copyright
     $('#year').text(new Date().getFullYear());
-
     CKEDITOR.replace('editor1');
   </script>
 </body>
 
-</html>
+</html> 
