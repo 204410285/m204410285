@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
 --
 -- Host: localhost    Database: ktv
 -- ------------------------------------------------------
@@ -23,11 +23,12 @@ DROP TABLE IF EXISTS `box`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `box` (
-  `roomid` int(11) NOT NULL AUTO_INCREMENT,
-  `Number_people` int(11) DEFAULT NULL,
-  `box_size` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`roomid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `people` int(11) DEFAULT NULL,
+  `size` varchar(45) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,6 +37,7 @@ CREATE TABLE `box` (
 
 LOCK TABLES `box` WRITE;
 /*!40000 ALTER TABLE `box` DISABLE KEYS */;
+INSERT INTO `box` VALUES (1,NULL,'Mini',NULL),(2,NULL,'Small',NULL),(4,NULL,'Medium',NULL),(5,NULL,'Big',NULL),(6,NULL,'Extra large',NULL),(7,NULL,'VIP ',NULL);
 /*!40000 ALTER TABLE `box` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-22 21:46:42
+-- Dump completed on 2019-05-19 22:37:18
